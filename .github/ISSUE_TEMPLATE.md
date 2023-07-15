@@ -1,6 +1,3 @@
 ---
-title: Release
-labels: RELEASE
+title: Release {{ env.VERSION }}
 ---
-
-{{ env.CHANGELOG }}
