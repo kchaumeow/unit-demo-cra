@@ -1,7 +1,7 @@
 ---
 title: Release {{ env.VERSION }}
 assignees: kchaumeow
-labels: release
+labels: RELEASE
 ---
 
 {{ env.CHANGELOG }}
