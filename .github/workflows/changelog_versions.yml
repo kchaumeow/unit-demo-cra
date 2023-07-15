@@ -16,6 +16,7 @@ jobs:
         run: |
           chmod +x "${{ github.workspace }}/scripts/gen_changelog.sh"
           echo "CHANGELOG=$(${{ github.workspace }}/scripts/gen_changelog.sh)" >> $GITHUB_OUTPUT
+        shell: bash
         id: changelog
       - name: Create release issue
         uses: JasonEtco/create-an-issue@v2
