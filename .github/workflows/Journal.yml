@@ -1,9 +1,0 @@
-name: Journal
-on: merge_group
-jobs:
-
-  Journal_workflows:
-    runs-on: ubuntu-latest
-    steps:
-      - name: commitlint workflow
-        run: gh run view --job "commitlint" --log
