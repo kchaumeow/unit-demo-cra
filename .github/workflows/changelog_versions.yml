@@ -15,8 +15,7 @@ jobs:
       - name: Generate changelog 
         run: |
           chmod +x "${{ github.workspace }}/scripts/gen_changelog.sh"
-          echo "CHANGELOG=$(${{ github.workspace }}/scripts/gen_changelog.sh)" >> $GITHUB_OUTPUT
-          ${{ github.workspace }}/scripts/gen_changelog.sh
+          echo "##[set-output name=CHANGELOG;]$(${{ github.workspace }}/scripts/gen_changelog.sh)"
         shell: bash
         id: changelog
       - name: Create release issue
