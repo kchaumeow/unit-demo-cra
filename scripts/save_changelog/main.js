@@ -3,7 +3,7 @@ const GitHubAPI = require("./gitHubAPI");
 
 async function main() {
   const token = process.argv[2];
-  const workflowUrl = process.argv[3];
+  const workflowUrl = process.argv[4];
   const [owner, repo] = process.argv[3].split("/");
   const gitHubAPI = new GitHubAPI(token, owner, repo);
 
