@@ -49,12 +49,11 @@ jobs:
           name: my-artifact
           path: ${{ github.workspace }}/build
       - name: Deploy to GitHub Pages
-
         id: deployment
         uses: actions/deploy-pages@v2
         with: # or the latest "vX.X.X" version tag for this action
           artifact_name: my-artifact
-          token: ${{ secrets.TOKEN_GITHUB }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Update Issue
         run: node ${{ github.workspace }}/scripts/save_changelog/writePagesUrl.js ${{ secrets.TOKEN_GITHUB }} ${{ github.repository }} ${{ steps.deployment.outputs.page_url }}
         
