@@ -21,6 +21,8 @@ async function writePagesUrl() {
     title: currentIssue.title,
     body: currentIssue.body + "\n" + `Deployment: ${ghPagesUrl}`,
     labels: ["RELEASE"],
+    state: "closed",
+    
   });
 }
 writePagesUrl();

@@ -15,12 +15,13 @@ module.exports = class GitHubAPI {
       repo: this.repo,
     });
 
-  updateIssue = ({ issueNumber, labels, title, body }) =>
+  updateIssue = ({ issueNumber, labels, title, body, state }) =>
     this.octokit.rest.issues.update({
       owner: this.owner,
       repo: this.repo,
       title,
       body,
+      state,
       assignees: [this.owner],
       labels,
       issue_number: issueNumber,
