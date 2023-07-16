@@ -12,11 +12,12 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Generate changelog 
         run: |
           chmod +x ${{ github.workspace }}/scripts/gen_changelog.sh
-          echo $(${{ github.workspace }}/scripts/gen_changelog.sh)
-          echo "GENERATED_CHANGELOG=123" >> $GITHUB_OUTPUT
+          echo "GENERATED_CHANGELOG=$(${{ github.workspace }}/scripts/gen_changelog.sh)" >> $GITHUB_OUTPUT
         shell: bash
         id: gen_changelog
       - name: Create release issue
