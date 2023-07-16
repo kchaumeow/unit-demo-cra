@@ -43,11 +43,17 @@ jobs:
         run: npm ci
       - name: Build Progect
         run: npm run build
+      - name: Set up artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ${{ github.workspace }}/build
       - name: Deploy to GitHub Pages
+
         id: deployment
         uses: actions/deploy-pages@v2
         with: # or the latest "vX.X.X" version tag for this action
-          artifact_name: "build"
+          artifact_name: my-artifact
           token: ${{ secrets.TOKEN_GITHUB }}
       - name: Update Issue
         run: node ${{ github.workspace }}/scripts/save_changelog/writePagesUrl.js ${{ secrets.TOKEN_GITHUB }} ${{ github.repository }} ${{ steps.deployment.outputs.page_url }}
