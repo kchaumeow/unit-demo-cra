@@ -25,14 +25,22 @@ jobs:
       - name: Save changelog 
         run: node ${{ github.workspace }}/scripts/save_changelog/main.js ${{ secrets.TOKEN_GITHUB }} ${{ github.repository }} ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         shell: bash
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Dependencies
+        run: npm ci
+      - name: Build Progect
+        run: npm run build
   gh-pages:
-    needs: deploy
+    needs: [deploy, build]
     runs-on: ubuntu-latest
     permissions:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
     # deployment step
     steps:
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2 # or the latest "vX.X.X" version tag for this action
