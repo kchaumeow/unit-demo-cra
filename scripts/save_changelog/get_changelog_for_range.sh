@@ -1,1 +1,2 @@
-git log $1 | echo ${2} --no-decorate --pretty=format:"%cs %an | %B" 
+git log $1 --no-decorate --pretty=format:"%cs %an | %B" 
+echo $2
