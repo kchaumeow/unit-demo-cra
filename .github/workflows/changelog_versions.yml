@@ -14,15 +14,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Generate changelog 
-        run: |
-          chmod +x ${{ github.workspace }}/scripts/gen_changelog.sh
-          echo "GENERATED_CHANGELOG=$(${{ github.workspace }}/scripts/gen_changelog.sh)" >> $GITHUB_OUTPUT
+      - name: Save changelog 
+        run: node ${{ github.workspace }}/scripts/save_changelog/main.js ${{ secrets.TOKEN_GITHUB }} ${{ github.repository }}
         shell: bash
-        id: gen_changelog
-      - name: Create release issue
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-          VERSION: ${{ github.ref_name }}
-          GENERATED_CHANGELOG: ${{ steps.gen_changelog.outputs.GENERATED_CHANGELOG }}

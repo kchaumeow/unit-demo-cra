@@ -1,0 +1,1 @@
+git tag --sort=-committerdate --list 'v*' | head -2 | tail -1
