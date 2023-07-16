@@ -3,4 +3,4 @@ title: Release {{ env.VERSION }}
 labels: RELEASE
 ---
 
-{{ env.CHANGELOG }}
+{{ env.GENERATED_CHANGELOG }}

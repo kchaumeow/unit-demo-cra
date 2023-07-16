@@ -14,13 +14,14 @@ jobs:
         uses: actions/checkout@v3
       - name: Generate changelog 
         run: |
-          chmod +x "${{ github.workspace }}/scripts/gen_changelog.sh"
-          echo "##[set-output name=CHANGELOG;]$(${{ github.workspace }}/scripts/gen_changelog.sh)"
+          chmod +x ${{ github.workspace }}/scripts/gen_changelog.sh
+          echo $(${{ github.workspace }}/scripts/gen_changelog.sh)
+          echo "GENERATED_CHANGELOG=$(${{ github.workspace }}/scripts/gen_changelog.sh)" >> $GITHUB_OUTPUT
         shell: bash
-        id: changelog
+        id: gen_changelog
       - name: Create release issue
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
           VERSION: ${{ github.ref_name }}
-          CHANGELOG: ${{ steps.changelog.outputs.CHANGELOG }}
+          GENERATED_CHANGELOG: ${{ steps.gen_changelog.outputs.GENERATED_CHANGELOG }}
