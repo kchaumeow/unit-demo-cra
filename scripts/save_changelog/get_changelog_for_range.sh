@@ -1,1 +1,1 @@
-git log $1 --no-decorate --pretty=format:"%cs %an | %B" | echo WORKFLOW_LINK
+git log $1 | echo ${2} --no-decorate --pretty=format:"%cs %an | %B" 

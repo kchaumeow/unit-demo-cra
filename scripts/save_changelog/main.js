@@ -3,6 +3,7 @@ const GitHubAPI = require("./gitHubAPI");
 
 async function main() {
   const token = process.argv[2];
+  const workflowUrl = process.argv[3];
   const [owner, repo] = process.argv[3].split("/");
   const gitHubAPI = new GitHubAPI(token, owner, repo);
 
@@ -24,7 +25,7 @@ async function main() {
   }
 
   const changelogText = await runCommand(
-    `sh ${__dirname}/get_changelog_for_range.sh ${commitsFilter}`
+    `sh ${__dirname}/get_changelog_for_range.sh ${commitsFilter} ${workflowUrl}`
   );
 
   const issueTitle = `Release ${currentReleaseTag}`;
