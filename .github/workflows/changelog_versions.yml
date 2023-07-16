@@ -25,4 +25,18 @@ jobs:
       - name: Save changelog 
         run: node ${{ github.workspace }}/scripts/save_changelog/main.js ${{ secrets.TOKEN_GITHUB }} ${{ github.repository }} ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         shell: bash
+  gh-pages:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    # deployment step
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2 # or the latest "vX.X.X" version tag for this action
+      - name: Update Issue
+        run: node ${{ github.workspace }}/scripts/save_changelog/writePagesUrl.js ${{ secrets.TOKEN_GITHUB }} ${{ github.repository }} ${{ steps.deployment.outputs.page_url }}
+        
 
