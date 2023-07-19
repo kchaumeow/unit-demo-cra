@@ -20,19 +20,5 @@ export const TodoList: FC = () => {
     dispatch(addItem(text));
   }, [dispatch, text]);
 
-  return (
-    <div>
-      <div>
-        <input data-testid="input-add" value={text} onChange={onChange} />
-        <button data-testid="button-add" onClick={onClick}>
-          Добавить
-        </button>
-      </div>
-      <div data-testid="list" className="list">
-        {items.map((text, i) => (
-          <TodoItem key={i} index={i} />
-        ))}
-      </div>
-    </div>
-  );
+  return null
 };
